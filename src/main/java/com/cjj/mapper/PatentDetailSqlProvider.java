@@ -16,7 +16,7 @@ public class PatentDetailSqlProvider {
 	
 	private String selectAllFromTable(String aid,String tbName) {
 		
-		String dbName = "patent_" + StrUtils.getPatentDBName(aid).toLowerCase();
+		String dbName = "patent_";
 		return new SQL() {{  
 			SELECT("*");  
 			FROM("`" + dbName + "`.`" + tbName + "`");  
