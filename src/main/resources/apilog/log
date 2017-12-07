@@ -1,0 +1,12 @@
+2017年11月8日09点23分
+1添加接口：根据aid列表 批量添加监控专利------/monitor/multiAdd
+2添加接口：获取用户收藏列表，--------/monitor/listFavorites
+3收藏列表中专利需要添加到监控可以用/monitor/multiAdd去添加
+2017年11月7日11点21分
+1添加接口：首页概况统计-------/monitor/dashboard
+2添加接口：首页监控专利列表查询----------/monitor/list
+3添加接口：年费监控检索---------/monitor/list（暂时只有page，pageSize是有效的，稍后完成）
+4添加接口：通过文件添加监控专利-------/monitor/excelAdd
+5添加接口：添加专利--专利检索-------/monitor/patentGroup（权利人，发明人暂时分开，合在一起检索还有一些问题）
+7添加接口：通过收藏添加监控部分暂时未完成
+8添加接口：删除监控------/monitor/delete
