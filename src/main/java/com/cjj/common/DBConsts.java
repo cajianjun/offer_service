@@ -13,6 +13,10 @@ public class DBConsts {
 	 */
 	public final static String T_COMPANY = "company";
 	/**
+	 * 职位
+	 */
+	public final static String T_JOBS = "jobs";
+	/**
 	 * 申请人关注
 	 */
 	public final static String T_APPLICANT_FOLLOW = "applicant_follow";

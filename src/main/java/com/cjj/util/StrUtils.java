@@ -58,28 +58,32 @@ public class StrUtils {
 		dateFormat.setTimeZone(TimeZone.getTimeZone("GMT+0800"));
 	}
 
-	public static String arr2String(String[] ss) {
+	public static String arr2String(String[] ss,boolean fangKuoHao) {
 		StringBuilder sb = new StringBuilder();
-		sb.append("[");
+		if(fangKuoHao) {
+			sb.append("[");
+		}
 		for(String s :ss) {
 			if(!StringUtils.isEmpty(s)) {
 				sb.append(s.trim()).append(",");
 			}
 		}
 		String finalStr = sb.toString();
-		finalStr = finalStr.substring(0,finalStr.length() -1) + "]";
+		finalStr = finalStr.substring(0,finalStr.length() -1) + (fangKuoHao?"]":"");
 		return finalStr;
 	}
-	public static String list2String(List<String> ss) {
+	public static String list2String(List<String> ss,boolean fangKuoHao) {
 		StringBuilder sb = new StringBuilder();
-		sb.append("[");
+		if(fangKuoHao) {
+			sb.append("[");
+		}
 		for(String s :ss) {
 			if(!StringUtils.isEmpty(s)) {
 				sb.append(s.trim()).append(",");
 			}
 		}
 		String finalStr = sb.toString();
-		finalStr = finalStr.substring(0,finalStr.length() -1) + "]";
+		finalStr = finalStr.substring(0,finalStr.length() -1) + (fangKuoHao?"]":"");
 		return finalStr;
 	}
 	public static List<String> string2List(String s){
