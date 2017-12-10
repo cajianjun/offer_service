@@ -1,42 +1,63 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>角色管理</title>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/font-awesome.min.css">
-<link rel="stylesheet" href="../plugins/jqgrid/ui.jqgrid-bootstrap.css">
-<link rel="stylesheet" href="../plugins/ztree/css/metroStyle/metroStyle.css">
-<link rel="stylesheet" href="../css/main.css">
-<script src="../libs/jquery.min.js"></script>
-<script src="../plugins/layer/layer.js"></script>
-<script src="../libs/bootstrap.min.js"></script>
-<script src="../libs/vue.min.js"></script>
-<script src="../plugins/jqgrid/grid.locale-cn.js"></script>
-<script src="../plugins/jqgrid/jquery.jqGrid.min.js"></script>
-<script src="../plugins/ztree/jquery.ztree.all.min.js"></script>
-<script src="../js/common.js"></script>
+	<meta charset="utf-8">
+	<title>职位列表</title>
+	
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<script type="text/javascript" src="libs/jquery.min.js"></script>
+	<script type="text/javascript" src="libs/bootstrap.min.js"></script>
+	<script type="text/javascript" src="libs/mp.mansory.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/mansory-style.css">
 </head>
 <body>
-<div id="rrapp" v-cloak>
-	<div v-show="showList">
-		<div class="grid-btn">
-			<div class="form-group col-sm-2">
-				<input type="text" class="form-control" v-model="q.roleName" @keyup.enter="query" placeholder="角色名称">
+
+	<div class="container">
+		<h1>职位列表</h1>
+		<div class="" id="my-gallery-container">
+			<div class="item" data-order="1">
+				<div>
+				    <h6>Java开发工程师
+				        <small>一天前</small>
+				        <span style=" float:right;">8k-10k</span>
+				    </h6>
+				    <span class="label label-primary">主要标签</span>
+				</div>
+				<hr/>
+				<h6>湖州趣码</h6>
+				<h6><small>一个一天到晚加班的公司</small></h6>				
 			</div>
-			<a class="btn btn-default" @click="query">查询</a>
+			<div class="item h200" data-order="30">
+				<p>item 1</p>
+			</div>
+			<div class="item h250" data-order="29">
+				<p>item 2</p>
+			</div>
 			
-			<a v-if="hasPermission('sys:role:save')" class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
-			<a v-if="hasPermission('sys:role:update')" class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
-			<a v-if="hasPermission('sys:role:delete')" class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+
 		</div>
-	    <table id="jqGrid"></table>
-	    <div id="jqGridPager"></div>
-    </div>
-</div>
-   
-<script src="../js/index.js"></script>
+
+
+	</div>
+	<script type="text/javascript">
+		jQuery(document).ready(function ( $ ) {
+			$("#my-gallery-container").mpmansory(
+				{
+					childrenClass: 'item', // default is a div
+					columnClasses: 'padding', //add classes to items
+					breakpoints:{
+						lg: 3, 
+						md: 4, 
+						sm: 6,
+						xs: 12
+					},
+					distributeBy: { order: false, height: false, attr: 'data-order', attrOrder: 'asc' }, //default distribute by order, options => order: true/false, height: true/false, attr => 'data-order', attrOrder=> 'asc'/'desc'
+					onload: function (items) {
+						//make somthing with items
+					} 
+				}
+			);
+		});
+	</script>
 </body>
 </html>
