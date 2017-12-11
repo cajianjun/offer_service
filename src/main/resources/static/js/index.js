@@ -1,180 +1,78 @@
-$(function () {
-    $("#jqGrid").jqGrid({
-        url: baseURL + 'sys/role/list',
-        datatype: "json",
-        colModel: [			
-			{ label: '角色ID', name: 'roleId', index: "role_id", width: 45, key: true },
-			{ label: '角色名称', name: 'roleName', index: "role_name", width: 75 },
-			{ label: '备注', name: 'remark', width: 100 },
-			{ label: '创建时间', name: 'createTime', index: "create_time", width: 80}
-        ],
-		viewrecords: true,
-        height: 385,
-        rowNum: 10,
-		rowList : [10,30,50],
-        rownumbers: true, 
-        rownumWidth: 25, 
-        autowidth:true,
-        multiselect: true,
-        pager: "#jqGridPager",
-        jsonReader : {
-            root: "page.list",
-            page: "page.currPage",
-            total: "page.totalPage",
-            records: "page.totalCount"
-        },
-        prmNames : {
-            page:"page", 
-            rows:"limit", 
-            order: "order"
-        },
-        gridComplete:function(){
-        	//隐藏grid底部滚动条
-        	$("#jqGrid").closest(".ui-jqgrid-bdiv").css({ "overflow-x" : "hidden" }); 
-        }
-    });
-});
+//{
+//            job: {
+//                id: 15,
+//                companyId: 78,
+//                jobName: "电话销售",
+//                jobType: "OTHER",
+//                salaryF: 3000,
+//                salaryT: 5000,
+//                keywords: "[\"1\",\"qq\",\"2\",\"3\",\"4\",\"5\",\"6\"]",
+//                school: "高中以上",
+//                datetimeCreate: 1512616900000,
+//                isDeleted: 0
+//            },
+//            company: {
+//                id: 78,
+//                name: "湖州渡口信息技术有限公司",
+//                address: "联系地址：湖州二环西路1388号赛格数码城2号楼裙楼4层A区4A09号办公区",
+//                contractor: "联 系 人：朱经理",
+//                phone: "联系电话：15067292599",
+//                email: "联系邮箱：345913@qq.com",
+//                website: "公司网址：www.zjduko.com",
+//                fax: "传    真：",
+//                introduce: "渡口网络是一家集策略咨询、创意创新、视觉设计、技术研发、内容制造、营销推广为一体的综合型数字化创新服务企业，其利用公司持续积累的核心技术和互联网思维，提供以互联网、移动互联网为核心的网络技术服务和互动整合营销服务，为传统企业实现“互联网+”升级提供整套解决方案。公司定位于中大型企业为核心客户群，可充分满足这一群体相比中小企业更为丰富、高端、多元的互联网数字综合需求。公司作为一家互联网数字服务综合商，其主营业务包括移动互联网应用开发服务、数字互动整合营销服务、互联网网站建设综合服务和电子商务综合服务。",
+//                jsonArr: null,
+//                platformId: 1,
+//                thirdpartId: "28105",
+//                datetimeCreate: 1512635042000,
+//                isDeleted: 0
+//            }
+//        }
 
-var setting = {
-	data: {
-		simpleData: {
-			enable: true,
-			idKey: "menuId",
-			pIdKey: "parentId",
-			rootPId: -1
-		},
-		key: {
-			url:"nourl"
-		}
+var mansorySetting = {
+	childrenClass: 'item', // default is a div
+	columnClasses: 'padding', //add classes to items
+	breakpoints:{
+		lg: 3, 
+		md: 4, 
+		sm: 6,
+		xs: 12
 	},
-	check:{
-		enable:true,
-		nocheckInherit:true
-	}
-};
-var ztree;
-	
+	distributeBy: { order: false, height: false, attr: 'data-order', attrOrder: 'asc' }, //default distribute by order, options => order: true/false, height: true/false, attr => 'data-order', attrOrder=> 'asc'/'desc'
+	onload: function (items) {
+		//make somthing with items
+	} 
+}
+
 var vm = new Vue({
-	el:'#rrapp',
-	data:{
-		q:{
-			roleName: null
-		},
-		showList: true,
-		title:null,
-		role:{}
-	},
-	methods: {
-		query: function () {
-			vm.reload();
-		},
-		add: function(){
-			vm.showList = false;
-			vm.title = "新增";
-			vm.role = {};
-			vm.getMenuTree(null);
-		},
-		update: function () {
-			var roleId = getSelectedRow();
-			if(roleId == null){
-				return ;
-			}
-			
-			vm.showList = false;
-            vm.title = "修改";
-            vm.getMenuTree(roleId);
-		},
-		del: function () {
-			var roleIds = getSelectedRows();
-			if(roleIds == null){
-				return ;
-			}
-			
-			confirm('确定要删除选中的记录？', function(){
-				$.ajax({
-					type: "POST",
-				    url: baseURL + "sys/role/delete",
-                    contentType: "application/json",
-				    data: JSON.stringify(roleIds),
-				    success: function(r){
-						if(r.code == 0){
-							alert('操作成功', function(index){
-								vm.reload();
-							});
-						}else{
-							alert(r.msg);
-						}
-					}
-				});
-			});
-		},
-		getRole: function(roleId){
-            $.get(baseURL + "sys/role/info/"+roleId, function(r){
-            	vm.role = r.role;
-                
-                //勾选角色所拥有的菜单
-    			var menuIds = vm.role.menuIdList;
-    			for(var i=0; i<menuIds.length; i++) {
-    				var node = ztree.getNodeByParam("menuId", menuIds[i]);
-    				ztree.checkNode(node, true, false);
-    			}
-    		});
-		},
-		saveOrUpdate: function () {
-            if(vm.validator()){
-                return ;
-            }
+  el: '#vct',
+  data: {
+    title: '菜鸟教程官网',
+    items: [
+    ]
+  },
+  mounted:function(){
+	 // reLayout();
+  }
+})
 
-			//获取选择的菜单
-			var nodes = ztree.getCheckedNodes(true);
-			var menuIdList = new Array();
-			for(var i=0; i<nodes.length; i++) {
-				menuIdList.push(nodes[i].menuId);
-			}
-			vm.role.menuIdList = menuIdList;
-			
-			var url = vm.role.roleId == null ? "sys/role/save" : "sys/role/update";
-			$.ajax({
-				type: "POST",
-			    url: baseURL + url,
-                contentType: "application/json",
-			    data: JSON.stringify(vm.role),
-			    success: function(r){
-			    	if(r.code === 0){
-						alert('操作成功', function(){
-							vm.reload();
-						});
-					}else{
-						alert(r.msg);
-					}
-				}
-			});
-		},
-		getMenuTree: function(roleId) {
-			//加载菜单树
-			$.get(baseURL + "sys/menu/list", function(r){
-				ztree = $.fn.zTree.init($("#menuTree"), setting, r);
-				//展开所有节点
-				ztree.expandAll(true);
-				
-				if(roleId != null){
-					vm.getRole(roleId);
-				}
-			});
-	    },
-	    reload: function () {
-	    	vm.showList = true;
-			var page = $("#jqGrid").jqGrid('getGridParam','page');
-			$("#jqGrid").jqGrid('setGridParam',{ 
-                postData:{'roleName': vm.q.roleName},
-                page:page
-            }).trigger("reloadGrid");
-		},
-        validator: function () {
-            if(isBlank(vm.role.roleName)){
-                alert("角色名不能为空");
-                return true;
-            }
-        }
+$.ajax({
+	type: "POST",
+    url: "offer/listj",
+    contentType: "application/json",
+    data: JSON.stringify({page:1,pageSize:10}),
+    success: function(r){
+    	if(r.errCode == 0){
+    		vm.items = r.data;
+    		vm.$nextTick(reLayout);
+    	}
 	}
 });
+function reLayout(){
+	jQuery(document).ready(function ( $ ) {
+		$("#my-gallery-container").mpmansory(
+				mansorySetting
+		);
+	});
+}
+

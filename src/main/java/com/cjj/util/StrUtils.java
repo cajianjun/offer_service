@@ -15,6 +15,7 @@ import org.springframework.util.StringUtils;
 
 public class StrUtils {
 	
+	
       /**
        * 使用md5的算法进行加密
        */

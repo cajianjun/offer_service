@@ -8,56 +8,30 @@
 	<script type="text/javascript" src="libs/jquery.min.js"></script>
 	<script type="text/javascript" src="libs/bootstrap.min.js"></script>
 	<script type="text/javascript" src="libs/mp.mansory.js"></script>
+	<script type="text/javascript" src="libs/vue.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/mansory-style.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 
-	<div class="container">
-		<h1>职位列表</h1>
+	<div id="vct" class="container">
+		<h1>{{title}}</h1>
+		
 		<div class="" id="my-gallery-container">
-			<div class="item" data-order="1">
+			<div class="item" v-for="item in items">
 				<div>
-				    <h6>Java开发工程师
+				    <h6>{{item.job.jobName}}
 				        <small>一天前</small>
-				        <span style=" float:right;">8k-10k</span>
+				        <span style=" float:right;">{{item.job.salaryF}}-{{item.job.salaryT}}</span>
 				    </h6>
 				    <span class="label label-primary">主要标签</span>
 				</div>
 				<hr/>
-				<h6>湖州趣码</h6>
-				<h6><small>一个一天到晚加班的公司</small></h6>				
+				<h6>{{item.company.name}}</h6>
+				<h6 class="introduce-long-limit"><small>{{item.company.introduce}}</small></h6>				
 			</div>
-			<div class="item h200" data-order="30">
-				<p>item 1</p>
-			</div>
-			<div class="item h250" data-order="29">
-				<p>item 2</p>
-			</div>
-			
-
 		</div>
-
-
 	</div>
-	<script type="text/javascript">
-		jQuery(document).ready(function ( $ ) {
-			$("#my-gallery-container").mpmansory(
-				{
-					childrenClass: 'item', // default is a div
-					columnClasses: 'padding', //add classes to items
-					breakpoints:{
-						lg: 3, 
-						md: 4, 
-						sm: 6,
-						xs: 12
-					},
-					distributeBy: { order: false, height: false, attr: 'data-order', attrOrder: 'asc' }, //default distribute by order, options => order: true/false, height: true/false, attr => 'data-order', attrOrder=> 'asc'/'desc'
-					onload: function (items) {
-						//make somthing with items
-					} 
-				}
-			);
-		});
-	</script>
+	<script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>
