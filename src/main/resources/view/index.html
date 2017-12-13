@@ -16,19 +16,29 @@
 
 	<div id="vct" class="container">
 		<h1>{{title}}</h1>
-		
+		<button type="button" class="btn btn-primary" title="Popover title"  
+								data-container="body" data-toggle="popover" data-placement="top" 
+								data-content="顶部的 Popover 中的一些内容">
+							顶部的 Popover
+						</button>
 		<div class="" id="my-gallery-container">
 			<div class="item" v-for="item in items">
 				<div>
 				    <h6>{{item.job.jobName}}
 				        <small>一天前</small>
+				        <button type="button" class="btn btn-primary" title="Popover title"  
+								data-container="body" data-toggle="popover" data-placement="top" 
+								data-content="顶部的 Popover 中的一些内容">
+							<span class="glyphicon glyphicon-phone-alt"></span>
+						</button>
+				        
 				        <span style=" float:right;">{{item.job.salaryF}}-{{item.job.salaryT}}</span>
 				    </h6>
-				    <span class="label label-primary">主要标签</span>
+				    <span class="label label-primary" style="margin: 0 3px;" v-for="keyword in item.job.keywords">{{keyword}}</span>
 				</div>
 				<hr/>
 				<h6>{{item.company.name}}</h6>
-				<h6 class="introduce-long-limit"><small>{{item.company.introduce}}</small></h6>				
+				<h6 class="introduce-long-limit" v-bind:title="item.company.introduce"><small>{{item.company.introduce}}</small></h6>				
 			</div>
 		</div>
 	</div>

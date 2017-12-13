@@ -64,6 +64,12 @@ $.ajax({
     success: function(r){
     	if(r.errCode == 0){
     		vm.items = r.data;
+    		for(var i = 0 ;i < vm.items.length;i++){
+    			var keywordsStr = vm.items[i].job.keywords;
+    			if(keywordsStr){
+    				vm.items[i].job.keywords = JSON.parse(keywordsStr);
+    			}
+    		}
     		vm.$nextTick(reLayout);
     	}
 	}
@@ -74,5 +80,6 @@ function reLayout(){
 				mansorySetting
 		);
 	});
+	$("[data-toggle='popover']").popover();
 }
 
