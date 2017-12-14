@@ -26,12 +26,10 @@
 				<div>
 				    <h6>{{item.job.jobName}}
 				        <small>一天前</small>
-				        <button type="button" class="btn btn-primary" title="Popover title"  
+								<span class="glyphicon glyphicon-phone-alt"
+								title="联系方式"  
 								data-container="body" data-toggle="popover" data-placement="top" 
-								data-content="顶部的 Popover 中的一些内容">
-							<span class="glyphicon glyphicon-phone-alt"></span>
-						</button>
-				        
+								v-bind:data-content="item.job.contact_html"></span>
 				        <span style=" float:right;">{{item.job.salaryF}}-{{item.job.salaryT}}</span>
 				    </h6>
 				    <span class="label label-primary" style="margin: 0 3px;" v-for="keyword in item.job.keywords">{{keyword}}</span>

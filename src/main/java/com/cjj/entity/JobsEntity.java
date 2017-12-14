@@ -10,10 +10,12 @@ public class JobsEntity{
 	private BigDecimal salaryT;
 	private String keywords;
 	private String school;
+	private String thirdpartId;
+	private String thirdpartUrl;
 	private Date datetimeCreate;
 	private Integer isDeleted;
 	public JobsEntity(){}
-	public JobsEntity(Integer id,Integer companyId,String jobName,String jobType,BigDecimal salaryF,BigDecimal salaryT,String keywords,String school,Date datetimeCreate,Integer isDeleted){
+	public JobsEntity(Integer id,Integer companyId,String jobName,String jobType,BigDecimal salaryF,BigDecimal salaryT,String keywords,String school,String thirdpartId,String thirdpartUrl,Date datetimeCreate,Integer isDeleted){
 		this();
 		this.id=id;
 		this.companyId=companyId;
@@ -23,6 +25,8 @@ public class JobsEntity{
 		this.salaryT=salaryT;
 		this.keywords=keywords;
 		this.school=school;
+		this.thirdpartId=thirdpartId;
+		this.thirdpartUrl=thirdpartUrl;
 		this.datetimeCreate=datetimeCreate;
 		this.isDeleted=isDeleted;
 	}
@@ -42,6 +46,10 @@ public class JobsEntity{
 	public String getKeywords(){return keywords;}
 	public void setSchool(String school){this.school=school;}
 	public String getSchool(){return school;}
+	public void setThirdpartId(String thirdpartId){this.thirdpartId=thirdpartId;}
+	public String getThirdpartId(){return thirdpartId;}
+	public void setThirdpartUrl(String thirdpartUrl){this.thirdpartUrl=thirdpartUrl;}
+	public String getThirdpartUrl(){return thirdpartUrl;}
 	public void setDatetimeCreate(Date datetimeCreate){this.datetimeCreate=datetimeCreate;}
 	public Date getDatetimeCreate(){return datetimeCreate;}
 	public void setIsDeleted(Integer isDeleted){this.isDeleted=isDeleted;}

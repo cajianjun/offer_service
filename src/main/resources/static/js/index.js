@@ -68,6 +68,9 @@ $.ajax({
     			var keywordsStr = vm.items[i].job.keywords;
     			if(keywordsStr){
     				vm.items[i].job.keywords = JSON.parse(keywordsStr);
+    				vm.items[i].job.contact_html = "<h5>" + vm.items[i].company.contractor + "</h5>"
+    				+"<h5>" + vm.items[i].company.phone + "</h5>"
+    				+"<h5>" + vm.items[i].company.email + "</h5>";
     			}
     		}
     		vm.$nextTick(reLayout);
@@ -80,6 +83,6 @@ function reLayout(){
 				mansorySetting
 		);
 	});
-	$("[data-toggle='popover']").popover();
+	$("[data-toggle='popover']").popover({html:true});
 }
 

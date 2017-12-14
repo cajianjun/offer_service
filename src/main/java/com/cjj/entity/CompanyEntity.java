@@ -11,12 +11,12 @@ public class CompanyEntity{
 	private String fax;
 	private String introduce;
 	private String jsonArr;
-	private Integer platformId;
 	private String thirdpartId;
+	private String thirdpartUrl;
 	private Date datetimeCreate;
 	private Integer isDeleted;
 	public CompanyEntity(){}
-	public CompanyEntity(Integer id,String name,String address,String contractor,String phone,String email,String website,String fax,String introduce,String jsonArr,Integer platformId,String thirdpartId,Date datetimeCreate,Integer isDeleted){
+	public CompanyEntity(Integer id,String name,String address,String contractor,String phone,String email,String website,String fax,String introduce,String jsonArr,String thirdpartId,String thirdpartUrl,Date datetimeCreate,Integer isDeleted){
 		this();
 		this.id=id;
 		this.name=name;
@@ -28,8 +28,8 @@ public class CompanyEntity{
 		this.fax=fax;
 		this.introduce=introduce;
 		this.jsonArr=jsonArr;
-		this.platformId=platformId;
 		this.thirdpartId=thirdpartId;
+		this.thirdpartUrl=thirdpartUrl;
 		this.datetimeCreate=datetimeCreate;
 		this.isDeleted=isDeleted;
 	}
@@ -53,10 +53,10 @@ public class CompanyEntity{
 	public String getIntroduce(){return introduce;}
 	public void setJsonArr(String jsonArr){this.jsonArr=jsonArr;}
 	public String getJsonArr(){return jsonArr;}
-	public void setPlatformId(Integer platformId){this.platformId=platformId;}
-	public Integer getPlatformId(){return platformId;}
 	public void setThirdpartId(String thirdpartId){this.thirdpartId=thirdpartId;}
 	public String getThirdpartId(){return thirdpartId;}
+	public void setThirdpartUrl(String thirdpartUrl){this.thirdpartUrl=thirdpartUrl;}
+	public String getThirdpartUrl(){return thirdpartUrl;}
 	public void setDatetimeCreate(Date datetimeCreate){this.datetimeCreate=datetimeCreate;}
 	public Date getDatetimeCreate(){return datetimeCreate;}
 	public void setIsDeleted(Integer isDeleted){this.isDeleted=isDeleted;}

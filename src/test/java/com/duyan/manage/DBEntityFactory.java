@@ -12,7 +12,7 @@ import java.sql.ResultSetMetaData;
 public class DBEntityFactory {
 
 	private String packageOutPath = "com.cjj.entity";
-	private String tablename = "company";
+	private String tablename = "jobs";
 //	private String dbname = "doyen_base_test";
 	private String dbname = "offer_center";
 	private String[] colnames;

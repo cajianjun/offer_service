@@ -14,6 +14,6 @@ public interface CompanyMapper {
 	List<CompanyEntity> listCompanyByPage(@Param("fromindex")Integer fromindex,@Param("pagesize")Integer pagesize);
 	
 	@Select("SELECT * FROM " + DBConsts.T_COMPANY
-			+ " WHERE id in (#{ids})")
+			+ " WHERE id in (${ids})")
 	List<CompanyEntity> listCompanyByIds(@Param("ids")String ids);
 }
